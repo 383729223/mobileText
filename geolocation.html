@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+    </style>
+    <script>
+    var succ = document.getElementById("success");
+    var err = document.getElementById("error");
+
+    // 获取一次地理定位
+    navigator.geolocation.getCurrentPosition(
+        (ev) => {
+            console.log('经度', ev.coords.longitude) //经度
+            console.log('纬度', ev.coords.latitude) //
+            succ.innerText = `经度：${ev.coords.longitude},纬度：${ev.coords.latitude}`;
+        },
+        (error) => {
+            console.log('error', error)
+            err.innerText=`获取失败`;
+        },
+    )
+    //频繁获取|监听
+    // var count=0;
+    // var timer = navigator.geolocation.watchPosition(
+    //   (ev)=>{
+    //     console.log('经度',ev.coords.longitude) //经度
+    //     console.log('纬度',ev.coords.latitude) //
+    //     count++;
+    //     if(count==5){
+    //       navigator.geolocation.clearWatch(timer)//关闭地理定位
+    //     }
+    //   },
+    //   ()=>{},
+    //   {
+    //     maximumAge:300  //灵敏度
+    //   }
+    // )
+    </script>
+</head>
+
+<body>
+    <p id="success"></p>
+    <p id="error"></p>
+</body>
+
+</html>
